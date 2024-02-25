@@ -1,0 +1,7 @@
+version: '3.5'
+services:
+  api-backend:
+#    container_name: lottery_kbtg_api
+    image: lottery_kbtg:lastest-v1
+    ports:
+      - 8888:8080
