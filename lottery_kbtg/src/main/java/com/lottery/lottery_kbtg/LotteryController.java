@@ -14,7 +14,7 @@ public class LotteryController {
             )
     );
 
-
+    //Api for get all ticket
     @GetMapping("/all_lotteries")
     public List<Lottery> getLotteries() {
         return lotteries;
@@ -36,12 +36,12 @@ public class LotteryController {
         lotteries.add(new Lottery(ticket, price, amount, null));
         return "Lottery added successfully";
     }
+
+    // From Story: EXP01 after you use api /admin/lotteries for add new ticket you have yo use /admin/add/lotteries/{ticketId}/users/{userId} for update userId owner for that ticket.
     @PostMapping("/admin/add/lotteries/{ticketId}/users/{userId}")
     public String addLotteryByAdmin(
             @PathVariable String userId,
             @PathVariable String ticketId
-//            @RequestParam String price,
-//            @RequestParam int amount
     ) {
         System.out.println("Here.");
         // Check if the ticket exists
@@ -61,29 +61,6 @@ public class LotteryController {
         lotteries.add(new Lottery(ticketId,"100", 1, userId));
         return "Lottery added successfully";
     }
-//    @PostMapping("/users/{userId}/lotteries/{ticketId}")
-//    public String addLotteryByAdmin(@PathVariable String userId, @PathVariable String ticketId) {
-//        // Check if the ticket exists with a different user
-//        for (Lottery lottery : lotteries) {
-//            if (lottery.getTicket().equals(ticketId) && !Objects.equals(lottery.getUser_id(), userId)) {
-//                return "Cannot add the ticket. It already exists with a different user.";
-//            }
-//        }
-//
-//        // Check if the ticket exists
-//        for (Lottery lottery : lotteries) {
-//            if (lottery.getTicket().equals(ticketId)) {
-//                // If the ticket already exists, update the user ID and return
-//                lottery.setUser_id(userId);
-//                return "User ID added to ticket " + ticketId;
-//            }
-//        }
-//
-//        // If the ticket does not exist, add a new Lottery object to the list
-//        lotteries.add(new Lottery(ticketId, "100", 1, userId));
-//        return "Lottery added successfully";
-//    }
-
 
     //Story: EXP02
     @GetMapping("/lotteries")
